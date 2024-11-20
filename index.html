@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Numerology calculator</title>
+    <link rel="stylesheet" type="text/css" href="app.css">
+  </head>
+
+  <body>
+    <header>
+    </header>
+    <div class="nav">
+      <h1>Name Numerology Calculator<br></h1>
+      <h6>By Priyank S using PYTHAGOREAN &amp; CHALDEAN Technique</h6>
+      <p>Enter FULL name to check:</p>
+      <div class="content">
+      <input type="text" style="width: 350px">
+      <button onclick="calculate()">Calculate</button>
+      <div class="result"></div>
+      </div>
+    </div>
+
+
+    <script>
+      var PYTHAGOREAN = {
+        'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6, 'g': 7, 'h': 8, 'i': 9,
+        'j': 1, 'k': 2, 'l': 3, 'm': 4, 'n': 5, 'o': 6, 'p': 7, 'q': 8, 'r': 9,
+        's': 1, 't': 2, 'u': 3, 'v': 4, 'w': 5, 'x': 6, 'y': 7, 'z': 8
+      };
+
+      var CHALDEAN = {
+        'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 8, 'g': 3, 'h': 5, 'i': 1,
+        'j': 1, 'k': 2, 'l': 3, 'm': 4, 'n': 5, 'o': 7, 'p': 8, 'q': 1, 'r': 2,
+        's': 3, 't': 4, 'u': 6, 'v': 6, 'w': 6, 'x': 5, 'y': 1, 'z': 7
+      };
+
+      // Set up HTML elements
+      var input = document.querySelector('input');
+      var button = document.querySelector('button');
+      var result = document.querySelector('.result');
+
+      // Metode
+      function calculate(){
+        // Empty HTML
+        result.innerHTML = '';
+
+        // Print results
+        printResult(PYTHAGOREAN, 'Pythagoras');
+        printResult(CHALDEAN, 'Chaldean');
+      }
+
+      // Print list
+      function printResult(list, text) {
+        var letters = input.value.toLowerCase().replace(/[^0-9a-z]/g, '').split('');
+        var sum = 0, l, i;
+        for(i = 0; i < letters.length; i++){
+          // Extract letter from array
+          l = letters[i];
+
+          // Lookup or convert letter and add to sum
+          sum += list[l] || parseInt(l);
+        }
+
+        // Write the sum to screen
+        result.innerHTML += '<div class="result-text">' + text + ' ' + sum + '</div>';
+      }
+
+    </script>
+
+    </body>
+</html>
